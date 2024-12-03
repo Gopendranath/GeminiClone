@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './sidebar.css'
 import { assets } from '../../assets/assets.js'
 import { Context } from '../../context/Context.jsx'
@@ -8,6 +8,31 @@ const Sidebar = () => {
     const [isOpen, setIsOpen] = React.useState(true);
     const { onSent, previousPromts, setRecentPromts, newChat } = React.useContext(Context)
 
+    // Add this function to check if screen is mobile width
+    const isMobileWidth = () => {
+        return window.innerWidth <= 600;
+    };
+
+    // Add this useEffect hook
+    useEffect(() => {
+        const handleResize = () => {
+            if (isMobileWidth()) {
+                setIsOpen(false);
+                setExtensions(false);
+            }
+        };
+
+        // Set initial state
+        handleResize();
+
+        // Add event listener
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const loadPrompt = async (prompt) => {
         setRecentPromts(prompt)
