@@ -10,7 +10,7 @@ import {
 const apiKey = import.meta.env.VITE_API_KEY
 
 
-// const apiKey = 'AIzaSyCQwA0kQDpqpOJVR9X0ypzEF-ngEMVhOw8';
+
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
