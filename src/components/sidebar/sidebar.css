@@ -1,0 +1,120 @@
+
+.sidebar{
+    min-height: 100vh;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f0f4f9;
+    padding: 25px 15px;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.sidebar.open {
+    width: 280px;
+}
+
+.sidebar.closed {
+    width: 65px;
+}
+
+/* Text visibility transitions */
+.sidebar .new-chat p,
+.sidebar .recent,
+.sidebar .bottom-item p {
+    white-space: nowrap;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
+
+.sidebar.closed .new-chat p,
+.sidebar.closed .recent,
+.sidebar.closed .bottom-item p {
+    opacity: 0;
+    /* Delay opacity transition on close */
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Ensure text remains visible during animation */
+.sidebar.open .new-chat p,
+.sidebar.open .recent,
+.sidebar.open .bottom-item p {
+    opacity: 1;
+    /* Delay opacity transition on open */
+    transition: opacity 0.1s ease-in-out 0.2s;
+}
+
+.sidebar img{
+    width: 20px;
+}
+
+.sidebar .menu{
+    display: block;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.sidebar .new-chat{
+    margin-top: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background-color: #e6eaf1;
+    border-radius: 50px;
+    font-size: 14px;
+    color: grey;
+    cursor: pointer;
+}
+
+.sidebar .recent{
+    display: flex;
+    flex-direction: column;
+
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+
+.sidebar .recent-title{
+    margin: 30px 0px 20px 0px;
+}
+
+.sidebar .recent-entry{
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    padding: 10px;
+    padding-right: 40px;
+    border-radius: 50px;
+    color: #282828;
+    cursor: pointer;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.sidebar .recent-entry:hover{
+    background-color: #e2e6eb;
+}
+
+.sidebar .bottom{
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar .bottom-item{
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    .sidebar{
+        display: none;
+    }
+}
