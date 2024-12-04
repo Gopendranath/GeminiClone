@@ -1,6 +1,6 @@
 # Gemini Clone
 
-'A React-based clone of Google's Gemini AI chat interface with a responsive design for both desktop and mobile views.'
+A React-based clone of Google's Gemini AI chat interface with a responsive design for both desktop and mobile views.
 
 ## Live Demo
 🚀 [Try it live](https://clone-gemini-v1.netlify.app/)
