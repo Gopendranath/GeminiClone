@@ -50,14 +50,14 @@ const Main = () => {
                         </div>
                         <div className="result-data">
                             <img src={assets.gemini_icon} alt="" />
-                            {loading ? 
-                            <div className="loader">
-                                <hr />
-                                <hr />
-                                <hr />
-                            </div> 
-                            : 
-                            <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+                            {loading ?
+                                <div className="loader">
+                                    <hr />
+                                    <hr />
+                                    <hr />
+                                </div>
+                                :
+                                <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
                             }
                         </div>
                     </div>
@@ -66,11 +66,23 @@ const Main = () => {
 
                 <div className="main-bottom">
                     <div className="search-box">
-                        <input onChange={(e) => setInput(e.target.value)} value={input} type="text" placeholder='Promt...' />
+                        <input
+                            onChange={(e) => setInput(e.target.value)}
+                            value={input}
+                            type="text"
+                            placeholder='Prompt...'
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' && input.trim()) {
+                                    onSent(input);
+                                    setInput('');   
+                                }
+                            }}
+                        />
+
                         <div>
                             <img src={assets.gallery_icon} alt="" />
                             <img src={assets.mic_icon} alt="" />
-                            {input?<img onClick={() => onSent(input)} src={assets.send_icon} alt="" />:null}
+                            {input ? <img onClick={() => onSent(input)} src={assets.send_icon} alt="" /> : null}
                         </div>
                     </div>
                     <p className="bottom-info"> Gimini can make mistakes.. </p>

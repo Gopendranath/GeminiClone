@@ -1,41 +1,26 @@
-import {
-    GoogleGenerativeAI,
-    HarmCategory,
-    HarmBlockThreshold,
-} from "@google/generative-ai";
-
-// import dotenv from 'dotenv'
-// dotenv.config()
+import OpenAI from 'openai';
 
 const apiKey = import.meta.env.VITE_API_KEY
 
 
-
-const genAI = new GoogleGenerativeAI(apiKey);
-
-const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash",
+const openai = new OpenAI({
+  baseURL: 'https://openrouter.ai/api/v1',
+  apiKey: apiKey,
+  dangerouslyAllowBrowser: true
 });
 
-const generationConfig = {
-    temperature: 1,
-    topP: 0.95,
-    topK: 40,
-    maxOutputTokens: 8192,
-    responseMimeType: "text/plain",
-};
+async function run(prompt) {
+  const completion = await openai.chat.completions.create({
+    model: 'nvidia/llama-3.3-nemotron-super-49b-v1:free',
+    messages: [
+      {
+        role: 'user',
+        content: prompt,
+      },
+    ],
+  });
 
-async function run(promt) {
-    const chatSession = model.startChat({
-        generationConfig,
-        history: [
-        ],
-    });
-
-    const result = await chatSession.sendMessage(promt);
-    const response = result.response
-    console.log(response.text());
-    return response.text();
+  return completion.choices[0].message.content
 }
 
 export default run;
