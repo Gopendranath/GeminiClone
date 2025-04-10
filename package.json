@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": ".",
   "scripts": {
-    "dev": "vite",
+    "dev": "netlify dev",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

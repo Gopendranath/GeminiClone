@@ -1,8 +1,16 @@
 [build]
-  command = "npm run build"
+  functions = "netlify/functions"
   publish = "dist"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
   status = 200
+
+[dev]
+  command = "vite"
+  targetPort = 5173
+  port = 8888
+  framework = "vite"
+  autoLaunch = true
+
