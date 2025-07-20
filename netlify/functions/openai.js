@@ -19,7 +19,7 @@ export async function handler(event) {
 
   try {
     const completion = await openai.chat.completions.create({
-      model: 'nvidia/llama-3.3-nemotron-super-49b-v1:free',
+      model: 'google/gemma-3-27b-it:free',
       messages: [
         {
           role: 'user',
